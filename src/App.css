@@ -1,0 +1,453 @@
+/* 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #61a3ffc0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.app {
+  width: 400px;
+  background: #ffffff00;
+  border-radius: 15px;
+  padding: 25px 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  text-align: center;
+  backdrop-filter: blur(15px);
+  
+}
+.app h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.expense-form input,
+.expense-form select,
+.expense-form button {
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.expense-form input:focus,
+.expense-form select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+.expense-form button {
+  background: #007bff;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.expense-form button:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.expense-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.expense-filter label {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 5px;
+}
+
+.expense-filter select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.expense-list {
+  margin-bottom: 20px;
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 12px 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+}
+.expense-item:hover {
+  background: #e9ecef;
+}
+
+.expense-item div {
+  text-align: left;
+}
+
+.expense-item div small {
+  display: block;
+  color: #777;
+  font-size: 0.8rem;
+}
+
+.expense-item button {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.expense-item button:hover {
+  background: #a71d2a;
+  transform: scale(1.1);
+}
+
+.app h3 {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.chart {
+  margin-top: 20px;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+.chart h4 {
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #333;
+}
+.clear-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.clear-btn:hover {
+  background: #a71d2a;
+  transform: translateY(-2px);
+}
+@media screen and (max-width: 450px) {
+  .app {
+    width: 90%;
+    padding: 20px;
+  }
+  .filter-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+.expense-item:hover {
+  background: #f1f3f5;
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+ */
+ /* ==== GLOBAL STYLES ==== */
+/* ==== GLOBAL STYLES ==== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #74b9ff, #a29bfe);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #333;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ==== FIXED CHART (TOP RIGHT CORNER) ==== */
+.chart {
+  position: fixed;
+  top: 25px;
+  right: -90%;
+  width: 300px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 18px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  text-align: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.chart:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.chart h4 {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #fff;
+}
+
+/* ==== APP CONTAINER ==== */
+.app {
+  width: 420px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 30px 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.app:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.app h1 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 1.9rem;
+  letter-spacing: 1px;
+}
+
+/* ==== FORM ==== */
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 25px;
+}
+
+.expense-form input,
+.expense-form select,
+.expense-form button {
+  padding: 12px 14px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  outline: none;
+  background: rgba(210, 210, 210, 0.25);
+  color: #242424;
+  transition: all 0.3s ease;
+}
+.expense-form select option {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  outline: none;
+  background: rgba(210, 210, 210, 0.25);
+  color: #242424;
+  transition: all 0.3s ease;  
+}
+
+.expense-form input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.expense-form input:focus,
+.expense-form select:focus {
+  border-color: #00b4d8;
+  box-shadow: 0 0 8px rgba(0, 180, 216, 0.5);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.expense-form button {
+  background: linear-gradient(135deg, #00b4d8, #0077b6);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.expense-form button:hover {
+  background: linear-gradient(135deg, #0077b6, #0096c7);
+  transform: translateY(-2px);
+}
+
+/* ==== FILTER ==== */
+.filter-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.expense-filter label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+/* ==== MODERN DROPDOWN STYLES ==== */
+.expense-filter select {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #1e90ff, #00bfff);
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3);
+  transition: all 0.3s ease;
+  appearance: none;
+  cursor: pointer;
+}
+
+.expense-filter select:hover {
+  background: linear-gradient(135deg, #00bfff, #1e90ff);
+  transform: scale(1.03);
+}
+
+.expense-filter select:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(30, 144, 255, 0.6);
+}
+
+/* ==== EXPENSE LIST ==== */
+.expense-list {
+  margin-bottom: 20px;
+  max-height: 250px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.expense-list::-webkit-scrollbar {
+  width: 6px;
+}
+.expense-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 12px 15px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.expense-item:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+.expense-item div small {
+  display: block;
+  color: #dfe6e9;
+  font-size: 0.8rem;
+}
+
+/* Delete Button */
+.expense-item button {
+  background: linear-gradient(135deg, #ff6b6b, #c0392b);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.expense-item button:hover {
+  background: linear-gradient(135deg, #e63946, #b71c1c);
+  transform: scale(1.15);
+}
+
+/* ==== TOTAL / SUMMARY ==== */
+.app h3 {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+/* ==== CLEAR BUTTON ==== */
+.clear-btn {
+  background: linear-gradient(135deg, #ff6b6b, #d63031);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+  background: linear-gradient(135deg, #c0392b, #b71c1c);
+  transform: translateY(-2px);
+}
+
+/* ==== RESPONSIVE ==== */
+@media screen and (max-width: 900px) {
+  .chart {
+    position: static;
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .app {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .filter-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .expense-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}
